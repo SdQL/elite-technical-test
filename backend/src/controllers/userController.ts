@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
-import { UserService } from '../services/userService';
-import { successResponse } from '../utils/response';
+import { UserService } from '../services/userService.js';
+import { successResponse } from '../utils/response.js';
 
 export const createUser = async (req: Request, res: Response, next: NextFunction) => {
     try {

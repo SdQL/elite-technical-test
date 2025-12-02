@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import { z } from "zod";
-import { errorResponse } from "../utils/response";
+import { errorResponse } from "../utils/response.js";
 
 export const errorHandler = (err: any, req: Request, res: Response, next: NextFunction) => {
     if (err instanceof z.ZodError) {
