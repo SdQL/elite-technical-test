@@ -1,7 +1,7 @@
-import app from './app';
-import { PORT } from './config/env';
-import { testConnection } from './config/database';
-import { syncDatabase } from './models/index';
+import app from './app.js';
+import { PORT } from './config/env.js';
+import { testConnection } from './config/database.js';
+import { syncDatabase } from './models/index.js';
 
 const startServer = async () => {
     await syncDatabase();
