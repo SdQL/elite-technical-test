@@ -1,0 +1,43 @@
+{
+  "name": "elite-technical-test",
+  "version": "1.0.0",
+  "description": "Sistema completo de gestión de usuarios - Frontend React + Backend Node.js",
+  "private": true,
+  "workspaces": [
+    "frontend",
+    "backend"
+  ],
+  "scripts": {
+    "install:all": "npm install",
+    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "dev:frontend": "npm run dev --workspace=frontend",
+    "dev:backend": "npm run dev --workspace=backend",
+    "build": "npm run build --workspace=frontend",
+    "build:frontend": "npm run build --workspace=frontend",
+    "build:backend": "npm run build --workspace=backend",
+    "start": "npm run start --workspace=backend",
+    "postinstall": "echo '✅ Instalación completada! Ejecuta: npm run dev'"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tu-usuario/elite-technical-test.git"
+  },
+  "keywords": [
+    "react",
+    "typescript",
+    "nodejs",
+    "express",
+    "fullstack",
+    "crud",
+    "user-management"
+  ],
+  "author": "Samuel Cañas",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  }
+}
