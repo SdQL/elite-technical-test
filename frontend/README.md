@@ -1,21 +1,23 @@
 # 👥 Gestión de Usuarios - Frontend
 
-> **Aplicación web moderna para gestionar usuarios con React + TypeScript**
+> **Aplicación web moderna para gestionar usuarios con React + TypeScript + Router**
 
 ## 🚀 Demo en Vivo
 
-**Frontend:** [https://elite-technical-test-frontend.vercel.app](https://elite-technical-test-frontend.vercel.app)  
+**Frontend:** [https://elite-technical-test.vercel.app/users](https://elite-technical-test.vercel.app/users)  
 **API Backend:** [https://elite-technical-test.onrender.com/api](https://elite-technical-test.onrender.com/api)
 
 ## 📋 Características Principales
 
-- ✅ **CRUD Completo** - Crear, listar, editar y eliminar usuarios
-- ✅ **Paginación Inteligente** - Navegación fluida entre páginas con URLs dinámicas
-- ✅ **Formularios Validados** - Validación en tiempo real con mensajes claros
-- ✅ **Confirmaciones de Seguridad** - Modal de confirmación para eliminaciones
+- ✅ **CRUD Completo** - Crear, listar, editar y eliminar usuarios con campos expandidos
+- ✅ **Navegación SPA** - React Router con URLs amigables (`/users`, `/users/:id`)
+- ✅ **Perfiles Detallados** - Páginas individuales para cada usuario con información completa
+- ✅ **Formularios Profesionales** - Validación en tiempo real, campos organizados y contador de caracteres
+- ✅ **Confirmaciones de Seguridad** - Modal de confirmación para eliminaciones con información del usuario
+- ✅ **Arquitectura Modular** - Hooks especializados y separación clara de responsabilidades
 - ✅ **Diseño Responsive** - Optimizado para móviles, tablets y desktop
 - ✅ **Estados de Carga** - Feedback visual durante operaciones
-- ✅ **Manejo de Errores** - Mensajes informativos para problemas de red o validación
+- ✅ **Manejo de Errores** - Mensajes informativos en español para todos los casos
 
 ## 🛠️ Stack Tecnológico
 
@@ -23,6 +25,7 @@
 - **React 19** - Framework principal
 - **TypeScript** - Tipado estático para mejor mantenibilidad
 - **Vite** - Build tool rápido con hot reload
+- **React Router DOM** - Navegación SPA con routing declarativo
 
 ### Estilos & UI
 - **Tailwind CSS** - Framework utility-first para estilos
@@ -86,23 +89,17 @@ npm run dev
 - Prevención de eliminaciones accidentales
 
 ### 📄 Lista Paginada
-- 10 usuarios por página
+- De 4 a 10 usuarios por página
 - Navegación con números de página y flechas
-- URLs que reflejan la página actual (compartibles)
+- URLs que reflejan la página actual
 - Contador de usuarios totales
 
+    
 ## 🎨 Experiencia de Usuario
 
 - **Carga Progresiva** - Skeletons durante carga de datos
 - **Estados Vacíos** - Mensajes claros cuando no hay usuarios
 - **Responsive Design** - Adaptable a cualquier dispositivo
-
-## ⚡ Optimizaciones
-
-- **Bundle Splitting** - Código dividido para carga rápida
-- **Tree Shaking** - Solo el código necesario en producción
-- **CSS Purging** - Tailwind optimizado automáticamente
-- **TypeScript Strict** - Máxima seguridad de tipos
 
 ## 🧪 Calidad del Código
 
@@ -111,13 +108,3 @@ npm run dev
 - **Componentes tipados** al 100%
 - **Error Boundaries** para manejo robusto de errores
 ---
-
-## 👨‍💻 Sobre el Desarrollo
-
-Esta aplicación fue desarrollada como demostración de buenas prácticas en React moderno, enfocándose en:
-
-- **Código mantenible y escalable**
-- **Experiencia de usuario fluida**
-- **Arquitectura bien estructurada**
-- **Patrones de desarrollo modernos**
-
