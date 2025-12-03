@@ -1,11 +1,36 @@
-# 👥 Elite Technical Test - Sistema de Gestión de Usuarios
+# 🚀 Elite Technical Test — User Management System
 
-> **Aplicación fullstack completa con React + TypeScript frontend y Node.js + Express backend**
+**Aplicación Fullstack completa construida con:**
 
-## 🚀 Demo en Vivo
+- **Frontend:** React + TypeScript + Vite  
+- **Backend:** Node.js + Express + TypeScript + Sequelize  
+- **Base de datos:** PostgreSQL (Supabase)  
+- **Despliegue:** Vercel (frontend) + Render (backend)
 
-**Frontend:** [https://elite-technical-test.vercel.app/users](https://elite-technical-test.vercel.app/users)  
-**API Backend:** [https://elite-technical-test.onrender.com/api](https://elite-technical-test.onrender.com/api)
+---
+
+## 🔗 Demo en Vivo
+
+> ⚠️ **Nota importante:**  
+> Render apaga las instancias gratuitas después de inactividad.  
+> La **primera carga puede tardar 30–60 segundos** mientras el servidor despierta.
+
+- **Frontend:** https://elite-technical-test.vercel.app/users  
+- **API Backend:** https://elite-technical-test.onrender.com/api
+
+---
+
+## 📌 Descripción del Proyecto
+
+Este proyecto es un sistema de **gestión de usuarios (CRUD)** desarrollado para una prueba técnica profesional.  
+Incluye:
+
+- Listado con **paginación real**
+- Creación, edición y eliminación de usuarios
+- Validaciones frontend y backend
+- Manejo centralizado de estado
+- Arquitectura modular y escalable
+- Manejo robusto de errores, loaders y modal dialogs
 
 ## ⚡ Instalación Rápida
 
