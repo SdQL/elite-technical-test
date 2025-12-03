@@ -1,24 +1,18 @@
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import type { Pagination as PaginationType } from "../../types";
-
+import { SelectLimit } from "./SelectLimit";
 interface PaginationProps {
   pagination: PaginationType;
   onPageChange: (page: number) => void;
+  onLimitChange?: (limit: number) => void;
 }
 
-export const Pagination = ({ pagination, onPageChange }: PaginationProps) => {
-  const { page, total, limit, hasNext, hasPrev } = pagination;
-
-  // Validar datos y calcular el total de páginas
-  const validTotal = total || 0;
-  const validLimit = limit || 10;
-  const validPage = page || 1;
-
-  const totalPages = Math.ceil(validTotal / validLimit);
+export const Pagination = ({ pagination, onPageChange, onLimitChange }: PaginationProps) => {
+  const { page, total, limit, totalPages, hasNext, hasPrev } = pagination;
 
   // Calcular rango de elementos mostrados
-  const startItem = (validPage - 1) * validLimit + 1;
-  const endItem = Math.min(validPage * validLimit, validTotal);
+  const startItem = (page - 1) * limit + 1;
+  const endItem = Math.min(page * limit, total);
 
   return (
     <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 pt-6 border-t border-gray-200">
@@ -28,12 +22,19 @@ export const Pagination = ({ pagination, onPageChange }: PaginationProps) => {
         <span> - </span>
         <span className="font-medium">{endItem}</span>
         <span> de </span>
-        <span className="font-medium">{validTotal}</span>
+        <span className="font-medium">{total}</span>
         <span> usuarios</span>
       </div>
       <div className="flex items-center justify-center md:justify-end gap-2 order-1 md:order-2">
+        {onLimitChange && (
+          <SelectLimit
+            currentLimit={pagination.limit}
+            onLimitChange={onLimitChange}
+          />
+        )}
+
         <button
-          onClick={() => onPageChange(validPage - 1)}
+          onClick={() => onPageChange(page - 1)}
           disabled={!hasPrev}
           className="flex items-center justify-center w-8 h-8 rounded-lg border border-gray-300 bg-white hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-white transition-colors"
         >
@@ -41,7 +42,7 @@ export const Pagination = ({ pagination, onPageChange }: PaginationProps) => {
         </button>
 
         <div className="flex items-center gap-1">
-          {getPageNumbers(validPage, totalPages).map((pageNum, index) => (
+          {getPageNumbers(page, totalPages).map((pageNum, index) => (
             <button
               key={index}
               onClick={() =>
@@ -51,7 +52,7 @@ export const Pagination = ({ pagination, onPageChange }: PaginationProps) => {
               className={`
                 flex items-center justify-center w-8 h-8 rounded-lg text-sm font-medium transition-colors
                 ${
-                  pageNum === validPage
+                  pageNum === page
                     ? "bg-blue-600 text-white"
                     : pageNum === "..."
                     ? "bg-transparent text-gray-400 cursor-default"
@@ -66,7 +67,7 @@ export const Pagination = ({ pagination, onPageChange }: PaginationProps) => {
 
         {/* Botón Next */}
         <button
-          onClick={() => onPageChange(validPage + 1)}
+          onClick={() => onPageChange(page + 1)}
           disabled={!hasNext}
           className="flex items-center justify-center w-8 h-8 rounded-lg border border-gray-300 bg-white hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-white transition-colors"
         >
@@ -76,7 +77,7 @@ export const Pagination = ({ pagination, onPageChange }: PaginationProps) => {
         {/* Info de página actual */}
         <div className="text-sm text-gray-700 ml-4">
           <span>Página </span>
-          <span className="font-medium">{validPage}</span>
+          <span className="font-medium">{page}</span>
           <span> de </span>
           <span className="font-medium">{totalPages}</span>
         </div>

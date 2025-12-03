@@ -1,13 +1,13 @@
 import { Plus } from "lucide-react";
-import { UserModal } from "./UserModal";
-import { UserList } from "./UserList";
-import { ConfirmDeleteModal } from "./ConfirmDeleteModal";
-import { Pagination } from "../ui";
-import { useUserManagement } from "../../hooks/useUserManagement";
-import type { CreateUserRequest } from "../../types";
+import { UserModal } from "../components/users/UserModal";
+import { UserList } from "../components/users/UserList";
+import { ConfirmDeleteModal } from "../components/users/ConfirmDeleteModal";
+import { Pagination } from "../components/ui";
+import { useUserManagement } from "../hooks/useUserManagement";
+import type { CreateUserRequest } from "../types";
 
-export const UserPage = () => {
-  const { users, pagination, loading, error, actions, modals, changePage, refetch } = useUserManagement();
+export const UsersPage = () => {
+  const { users, pagination, loading, error, actions, modals, changePage, changeLimit, refetch } = useUserManagement();
 
   const handleCreate = async (data: CreateUserRequest): Promise<boolean> => {
     const user = await actions.create(data);
@@ -70,6 +70,7 @@ export const UserPage = () => {
         <Pagination 
           pagination={pagination}
           onPageChange={changePage}
+          onLimitChange={changeLimit}
         />
       )}
 
