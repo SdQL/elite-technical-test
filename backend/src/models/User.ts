@@ -21,13 +21,32 @@ const User = sequelize.define('User', {
             isEmail: true
         }
     },
-
     avatarUrl: {
         type: DataTypes.STRING,
         allowNull: true,
         validate: {
             isUrl: true
         }
+    },
+    role: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        defaultValue: 'Not Specified'
+    },
+
+    company: {
+        type: DataTypes.STRING,
+        allowNull: true
+    },
+
+    bio: {
+        type: DataTypes.TEXT,
+        allowNull: true
+    },
+
+    location: {
+        type: DataTypes.STRING,
+        allowNull: true
     }
 }, {
     tableName: 'users',

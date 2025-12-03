@@ -4,6 +4,10 @@ interface CreateUserData {
     name: string;
     email: string;
     avatarUrl?: string;
+    role: string;
+    company?: string;
+    bio?: string;
+    location?: string;
 }
 
 interface CustomError extends Error {
@@ -17,6 +21,10 @@ export class UserService {
                 name: userData.name,
                 email: userData.email,
                 avatarUrl: userData.avatarUrl,
+                role: userData.role,
+                company: userData.company,
+                bio: userData.bio,
+                location: userData.location,
             });
 
             return user;

@@ -4,9 +4,9 @@ import { successResponse } from '../utils/response.js';
 
 export const createUser = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const { name, email, avatarUrl } = req.body;
+        const { name, email, avatarUrl, role, company, bio, location } = req.body;
 
-        const user = await UserService.createUser({ name, email, avatarUrl });
+        const user = await UserService.createUser({ name, email, avatarUrl, role, company, bio, location });
 
         res.status(201).json(successResponse(user));
     } catch (error) {
