@@ -52,20 +52,6 @@ src/
 npm install
 ```
 
-2. **Configurar variables de entorno**:
-Crea un archivo `.env` en la raíz del proyecto:
-```env
-PORT=3000
-DATABASE_URL=postgresql://username:password@host:port/database
-NODE_ENV=development
-FRONTEND_URL=http://localhost:5173
-```
-
-3. **Sincronizar la base de datos**:
-```bash
-npm run dev
-```
-(La sincronización automática creará las tablas)
 
 ## 🚀 Uso
 
@@ -86,7 +72,7 @@ Obtener todos los usuarios con paginación.
 
 **Query Parameters:**
 - `page` (opcional): Número de página (default: 1)
-- `limit` (opcional): Elementos por página (default: 10, max: 100)
+- `limit` (opcional): Elementos por página (max: 10)
 
 **Respuesta exitosa (200):**
 ```json
@@ -142,6 +128,10 @@ Crear un nuevo usuario.
   "name": "Juan Pérez",
   "email": "juan@email.com",
   "avatarUrl": "https://example.com/avatar.jpg"
+  "role": "FullStack Developer",
+  "company": "Elite Ingenieros",
+  "bio": "Apasionado por construir sistemas complejos y escalables",
+  "location": "Medellin, Colombia"
 }
 ```
 
@@ -149,6 +139,11 @@ Crear un nuevo usuario.
 - `name`: Requerido, mínimo 2 caracteres
 - `email`: Requerido, formato válido, único
 - `avatarUrl`: Opcional, debe ser URL válida si se proporciona
+- `role`: Requerido, minimo 2 caracteres
+- `company`: Opcional, minimo 2 caracteres
+- `bio`: Opcional, maximo 500 caracteres
+- `location`: Opcional, maximo 100 caracteres
+
 
 #### **PUT** `/api/users/:id`
 Actualizar un usuario existente.
@@ -169,7 +164,9 @@ Eliminar un usuario.
 ```json
 {
   "success": true,
-  "data": null
+  "data": {
+    "message": "User deleted successfully"
+  }
 }
 ```
 
@@ -197,7 +194,6 @@ Eliminar un usuario.
 npm run dev        # Iniciar en modo desarrollo
 npm run build      # Compilar TypeScript
 npm start         # Iniciar en modo producción
-npm run test      # Ejecutar pruebas (por configurar)
 ```
 
 ### Estructura de validación
@@ -206,10 +202,14 @@ El proyecto utiliza **Zod** para validación de entrada y **Sequelize** para val
 ```typescript
 // Validación de entrada con Zod
 const createUserSchema = z.object({
-  name: z.string().min(2, 'El nombre debe tener al menos 2 caracteres'),
-  email: z.string().email('Email inválido'),
-  avatarUrl: z.string().url('URL inválida').optional()
-});
+  name: z.string().min(2).max(50),
+  email: z.string().email(),
+  avatarUrl: z.string().url().optional(),
+  role: z.string().min(2).max(50),
+  company: z.string().min(2).max(100).optional(),
+  bio: z.string().max(500).optional(),
+  location: z.string().min(2).max(100).optional(),
+})
 
 // Validación de modelo con Sequelize
 const User = sequelize.define('User', {
@@ -222,24 +222,3 @@ const User = sequelize.define('User', {
   }
 });
 ```
-
-## 🎯 Próximos pasos
-
-- [ ] Implementar autenticación JWT
-- [ ] Añadir pruebas unitarias
-- [ ] Configurar CI/CD
-- [ ] Añadir logging estructurado
-- [ ] Implementar rate limiting
-- [ ] Documentación con Swagger
-
-## 📝 Notas del desarrollo
-
-Este proyecto fue desarrollado como parte de una prueba técnica, priorizando:
-- **Aprendizaje de Sequelize**: Primera implementación usando este ORM
-- **Arquitectura limpia**: Separación clara de responsabilidades
-- **Mejores prácticas**: Validación, manejo de errores, paginación
-- **Código mantenible**: TypeScript y estructura modular
-
----
-
-*Desarrollado con ❤️ para aprender y crecer como desarrollador*
