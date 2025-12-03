@@ -12,10 +12,7 @@ const api = axios.create({
 export const getErrorMessage = (error: unknown): string => {
     if(axios.isAxiosError(error) && error.response) {
         const status = error.response.status;
-        const data = error.response.data;
-
-        if(data?.error) return data.error;
-
+ 
         switch(status) {
             case 404: return 'Usuario no encontrado';
             case 409: return 'Este email ya está registrado'
