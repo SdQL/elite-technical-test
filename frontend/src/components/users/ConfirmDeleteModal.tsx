@@ -21,7 +21,6 @@ export const ConfirmDeleteModal = ({
 
   const handleConfirm = async () => {
     await onConfirm();
-    // El hook ya maneja el cierre del modal si es exitoso
   };
 
   return (
@@ -31,12 +30,10 @@ export const ConfirmDeleteModal = ({
       title="Confirmar eliminación"
     >
       <div className="space-y-4">
-        {/* Icono de advertencia */}
         <div className="flex items-center justify-center w-12 h-12 mx-auto bg-red-100 rounded-full">
           <AlertTriangle className="w-6 h-6 text-red-600" />
         </div>
 
-        {/* Mensaje */}
         <div className="text-center space-y-2">
           <p className="text-gray-900 font-medium">
             ¿Estás seguro que quieres eliminar este usuario?
@@ -49,7 +46,6 @@ export const ConfirmDeleteModal = ({
           </p>
         </div>
 
-        {/* Botones */}
         <div className="flex gap-3 pt-4">
           <button
             onClick={onClose}
