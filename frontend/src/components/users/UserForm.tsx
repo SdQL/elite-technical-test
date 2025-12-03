@@ -3,7 +3,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import type { User, CreateUserRequest } from '../../types';
 
-// Esquema de validación que coincide con tu backend
+// Esquema de validación que coincide con el backend
 const userSchema = z.object({
   name: z.string()
     .min(2, 'El nombre debe tener al menos 2 caracteres')
@@ -29,6 +29,7 @@ export const UserForm = ({ user, onSubmit, loading = false, error }: UserFormPro
     handleSubmit, 
     formState: { errors } 
   } = useForm<CreateUserRequest>({
+    // Validación con Zod
     resolver: zodResolver(userSchema),
     defaultValues: {
       name: user?.name || '',
@@ -38,7 +39,6 @@ export const UserForm = ({ user, onSubmit, loading = false, error }: UserFormPro
   });
 
   const handleFormSubmit = (data: CreateUserRequest) => {
-    // Si avatarUrl está vacío, no lo enviamos
     const submitData = {
       name: data.name,
       email: data.email,
@@ -49,14 +49,12 @@ export const UserForm = ({ user, onSubmit, loading = false, error }: UserFormPro
 
   return (
     <form onSubmit={handleSubmit(handleFormSubmit)} className="space-y-4">
-      {/* Error general */}
       {error && (
         <div className="bg-red-50 border border-red-200 rounded-lg p-3">
           <p className="text-red-700 text-sm">{error}</p>
         </div>
       )}
 
-      {/* Campo Nombre */}
       <div>
         <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
           Nombre completo <span className="text-red-500">*</span>
@@ -73,7 +71,6 @@ export const UserForm = ({ user, onSubmit, loading = false, error }: UserFormPro
         )}
       </div>
 
-      {/* Campo Email */}
       <div>
         <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
           Email <span className="text-red-500">*</span>
@@ -90,7 +87,6 @@ export const UserForm = ({ user, onSubmit, loading = false, error }: UserFormPro
         )}
       </div>
 
-      {/* Campo Avatar URL */}
       <div>
         <label htmlFor="avatarUrl" className="block text-sm font-medium text-gray-700 mb-1">
           URL del Avatar <span className="text-gray-400">(opcional)</span>
@@ -107,7 +103,6 @@ export const UserForm = ({ user, onSubmit, loading = false, error }: UserFormPro
         )}
       </div>
 
-      {/* Botones */}
       <div className="flex gap-3 pt-4">
         <button
           type="submit"

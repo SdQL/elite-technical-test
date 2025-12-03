@@ -18,11 +18,6 @@ export const UserCard = ({ user, onEdit, onDelete }: UserCardProps) => {
               src={user.avatarUrl} 
               alt={`Avatar de ${user.name}`}
               className="w-full h-full rounded-full object-cover border-2 border-gray-100"
-              onError={(e) => {
-                const target = e.target as HTMLImageElement;
-                target.style.display = 'none';
-                target.nextElementSibling?.classList.remove('hidden');
-              }}
             />
           ) : null}
           

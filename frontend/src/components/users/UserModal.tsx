@@ -1,25 +1,25 @@
-import { Modal } from '../ui/Modal';
-import { UserForm } from './UserForm';
-import type { User, CreateUserRequest } from '../../types';
+import { Modal } from "../ui/Modal";
+import { UserForm } from "./UserForm";
+import type { User, CreateUserRequest } from "../../types";
 
 interface UserModalProps {
   isOpen: boolean;
   onClose: () => void;
-  user?: User;                    // undefined = crear, User = editar
+  user?: User; // undefined = crear, User = editar
   onCreateUser: (data: CreateUserRequest) => Promise<boolean>;
   onUpdateUser: (id: string, data: CreateUserRequest) => Promise<boolean>;
   loading: boolean;
   error: string | null;
 }
 
-export const UserModal = ({ 
-  isOpen, 
-  onClose, 
-  user, 
-  onCreateUser, 
-  onUpdateUser, 
-  loading, 
-  error 
+export const UserModal = ({
+  isOpen,
+  onClose,
+  user,
+  onCreateUser,
+  onUpdateUser,
+  loading,
+  error,
 }: UserModalProps) => {
   const isEditing = !!user;
 
@@ -32,20 +32,15 @@ export const UserModal = ({
       success = await onCreateUser(data);
     }
 
-    // El hook ya maneja el cierre del modal si es exitoso
     return success;
   };
 
   // Título dinámico
-  const title = isEditing ? 'Editar Usuario' : 'Crear Usuario';
+  const title = isEditing ? "Editar Usuario" : "Crear Usuario";
 
   return (
-    <Modal 
-      isOpen={isOpen} 
-      onClose={onClose} 
-      title={title}
-    >
-      <UserForm 
+    <Modal isOpen={isOpen} onClose={onClose} title={title}>
+      <UserForm
         user={user}
         onSubmit={handleSubmit}
         loading={loading}
