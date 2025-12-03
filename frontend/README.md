@@ -47,6 +47,7 @@ src/
 │   └── users/           # Componentes específicos de usuarios
 ├── hooks/               # Custom hooks para lógica de negocio
 ├── services/            # Capa de servicios para API calls
+|── pages/               # Paginas a usar con React Rouer
 ├── types/               # Definiciones de TypeScript
 ```
 
@@ -77,7 +78,7 @@ npm run dev
 
 ### ➕ Crear Usuario
 - Formulario con validación en tiempo real
-- Campos: Nombre, Email, URL de Avatar (opcional)
+- Campos: Nombre, Email, URL de Avatar (opcional), rol, compañia (opcional), biografia (opcional), ubicacion (opcional)
 
 ### ✏️ Editar Usuario
 - Formulario pre-poblado con datos actuales
@@ -91,7 +92,7 @@ npm run dev
 ### 📄 Lista Paginada
 - De 4 a 10 usuarios por página
 - Navegación con números de página y flechas
-- URLs que reflejan la página actual
+- URLs que reflejan la página actual y el limit
 - Contador de usuarios totales
 
     
