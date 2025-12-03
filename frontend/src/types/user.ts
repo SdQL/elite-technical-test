@@ -1,7 +1,11 @@
 export interface User {
     id: string;
     name: string;
-    email: string,
+    email: string;
+    role: string;
+    company: string;
+    location: string;
+    bio?: string;
     avatarUrl?: string;
     createdAt: string;
     updatedAt: string;
@@ -10,6 +14,10 @@ export interface User {
 export interface CreateUserRequest {
     name: string;
     email: string;
+    role: string;
+    company: string;
+    location: string;
+    bio?: string;
     avatarUrl?: string;
 }
 
@@ -23,6 +31,7 @@ export interface Pagination {
     page: number;
     limit: number;
     total: number;
+    totalPages: number;
     hasNext: boolean;
     hasPrev: boolean;
 }
