@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { getUserById } from '../services/userService';
 import type { User } from '../types';
 
-export const useUserProfile = (id: string) => {
+export const useUser = (id: string) => {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);

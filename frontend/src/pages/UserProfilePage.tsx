@@ -1,12 +1,12 @@
 // components/users/UserProfile.tsx
 import { useParams, Link } from 'react-router-dom';
 import { ArrowLeft, Mail, MapPin, Building, Briefcase, Calendar, User as UserIcon } from 'lucide-react';
-import { useUserProfile } from '../hooks/useUserProfile';
+import { useUser } from '../hooks/useUser';
 import LoadingSpinner from '../components/ui/LoadingSpinner';
 
 const UserProfilePage = () => {
   const { id } = useParams<{ id: string }>();
-  const { user, loading, error } = useUserProfile(id!);
+  const { user, loading, error } = useUser(id!);
 
   if (loading) {
     return (

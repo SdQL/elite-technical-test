@@ -8,7 +8,6 @@ export const createUserSchema = z.object({
   company: z.string().min(2).max(100).optional(),
   bio: z.string().max(500).optional(),
   location: z.string().min(2).max(100).optional(),
-
 })
 
 export const updateUserSchema = z.object({

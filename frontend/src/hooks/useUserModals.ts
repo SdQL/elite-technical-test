@@ -1,47 +1,34 @@
 import { useState } from 'react';
-import { useModal } from './useModal';
 import type { User } from '../types';
 
-export const useUserModals = (clearErrors?: () => void) => {
+export const useUserModals = () => {
+  const [isCreateOpen, setIsCreateOpen] = useState(false);
   const [editingUser, setEditingUser] = useState<User | null>(null);
-  const [userToDelete, setUserToDelete] = useState<User | null>(null);
-
-  const createModal = useModal();
-  const editModal = useModal();
-  const deleteModal = useModal();
+  const [deletingUser, setDeletingUser] = useState<User | null>(null);
 
   return {
+    // Create modal
+    isCreateOpen,
+    openCreate: () => setIsCreateOpen(true),
+    closeCreate: () => setIsCreateOpen(false),
+
+    // Edit modal
     editingUser,
-    userToDelete,
-    createModal: {
-      ...createModal,
-      close: () => {
-        clearErrors?.();
-        createModal.close();
-      }
-    },
-    editModal: {
-      ...editModal,
-      open: (user: User) => {
-        setEditingUser(user);
-        editModal.open();
-      },
-      close: () => {
-        setEditingUser(null);
-        editModal.close();
-      }
-    },
-    
-    deleteModal: {
-      ...deleteModal,
-      open: (user: User) => {
-        setUserToDelete(user);
-        deleteModal.open();
-      },
-      close: () => {
-        setUserToDelete(null);
-        deleteModal.close();
-      }
+    isEditOpen: !!editingUser,
+    openEdit: (user: User) => setEditingUser(user),
+    closeEdit: () => setEditingUser(null),
+
+    // Delete modal
+    deletingUser,
+    isDeleteOpen: !!deletingUser,
+    openDelete: (user: User) => setDeletingUser(user),
+    closeDelete: () => setDeletingUser(null),
+
+    // Cerrar todos
+    closeAll: () => {
+      setIsCreateOpen(false);
+      setEditingUser(null);
+      setDeletingUser(null);
     }
   };
 };
