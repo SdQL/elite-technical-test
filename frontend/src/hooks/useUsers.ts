@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback } from "react"
 import type { User, UsersResponse } from '../types/user';
 import { getUsers, getErrorMessage } from "../services/userService";
 
-export const useUsers = (page: number = 1, limit: number = 10) => {
+export const useUsers = (page: number = 1, limit: number = 8) => {
     const [users, setUsers] = useState<User[]>([]);
     const [pagination, setPagination] = useState<UsersResponse['pagination'] | null>(null);
     const [loading, setLoading] = useState<boolean>(true);
